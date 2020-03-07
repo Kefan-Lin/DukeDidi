@@ -1,0 +1,58 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>Title</title>
+</head>
+<h1>Driver Confirmed Rides.</h1>
+<h2>Choose one to complete!</h2>
+<body>
+    {% if not driver_confirmed_rides %}
+        <p>Driver Confirmed Rides Not Found!</p>
+    {% else %}
+        <form action="{% url 'DukeDidi:driverDashboard' %}" method="post">
+        {% csrf_token %}
+            {% for ride in driver_confirmed_rides %}
+                *****************************************
+                <br>
+                Ride: {{ forloop.counter }}<input type="radio" name="ride" value="{{ ride.pk }}" required="required">
+                <br>
+                Owner: {{ ride.owner }}
+                <br>
+                {% if ride.driver %}
+                    Driver: {{ ride.driver }}
+                {% else %}
+                    No Driver!
+                {% endif %}
+                <br>
+                Sharers:
+                {% if ride.sharers %}
+                    <ul>
+                    {% for sharer in ride.sharers %}
+                        <li>{{ sharer }}</li>
+                    {% endfor %}
+                    </ul>
+                {% else %}
+                     No Sharers!
+                {% endif %}
+                <br>
+                Remaining Size: {{ ride.remaining_size }}
+                <br>
+                Is Confirmed: {{ ride.is_confirmed }}
+                <br>
+                Is Completed: {{ ride.is_completed }}
+                <br>
+                Destination: {{ ride.destination }}
+                <br>
+                Arrival Time: {{ ride.arrival_time }}
+                <br>
+                Total Seats: {{ ride.total_size }}
+                <br>
+                <br>
+            {% endfor %}
+        <input type="submit" value="Complete Picked Ride" name="complete_ride">
+        </form>
+    {% endif %}
+<a href="{% url 'DukeDidi:driverDashboard' %}">Back to Driver Dashboard</a>
+</body>
+</html>

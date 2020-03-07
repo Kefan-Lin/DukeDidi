@@ -1,0 +1,27 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>Title</title>
+</head>
+<h1>Driver Dashboard</h1>
+<body>
+    {% if not curr_user_is_driver %}
+        You are not driver yet!
+        <br>
+        <a href="{% url 'DukeDidi:dashboard' %}">Back to Dashboard!</a>
+        <br>
+    {% else %}
+        <form action="{% url 'DukeDidi:driverOpenRides' %}" method="post">
+        {% csrf_token %}
+        <input type="submit" value="Driver Search Open Rides" name="click_driver_search_open_rides">
+        </form>
+        <form action="{% url 'DukeDidi:driverViewConfirmedRides' %}" method="post">
+        {% csrf_token %}
+        <input type="submit" value="Driver View Confirmed Rides" name="click_driver_view_confirmed_rides">
+        </form>
+        <br>
+        <a href="{% url 'DukeDidi:dashboard' %}">Back to Dashboard!</a>
+    {% endif %}
+</body>
+</html>

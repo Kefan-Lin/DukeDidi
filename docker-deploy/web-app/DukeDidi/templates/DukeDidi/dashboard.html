@@ -1,0 +1,40 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>Title</title>
+</head>
+<body>
+
+    <a href="{% url 'DukeDidi:editDriver' %}">Edit Driver Status</a>
+    <br>
+    <a href="{% url 'DukeDidi:requestRide' %}">Request a Ride</a>
+    <br>
+    <a href="{% url 'DukeDidi:searchSharableRides' %}">Search Sharable Rides</a>
+    <br>
+    <form action="{% url 'DukeDidi:driverRegister' %}" method="post">
+        {% csrf_token %}
+        <input type="submit" value="Register as a driver" name="register_as_a_driver">
+    </form>
+    <form action="{% url 'DukeDidi:viewNonCompletedRides' %}" method="post">
+        {% csrf_token %}
+        <input type="submit" value="View Non-Completed Rides" name="view_non_completed_rides">
+    </form>
+    <form action="{% url 'DukeDidi:viewOpenRides' %}" method="post">
+        {% csrf_token %}
+        <input type="submit" value="View Open Rides" name="view_open_rides">
+    </form>
+    <form action="{% url 'DukeDidi:driverDashboard' %}" method="post">
+        {% csrf_token %}
+        <input type="submit" value="Go to Driver Dashboard" name="click_driver_dashboard">
+    </form>
+    <form action="{% url 'DukeDidi:viewConfirmedRides' %}" method="post">
+        {% csrf_token %}
+        <input type="submit" value="View Confirmed Rides" name="click_view_confirmed_rides">
+    </form>
+    <form action="{% url 'DukeDidi:dashboard' %}" method="post">
+        {% csrf_token %}
+        <input type="submit" value="Log out" name="logout_button">
+    </form>
+</body>
+</html>

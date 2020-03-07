@@ -1,0 +1,40 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>Title</title>
+</head>
+<h1>Available Open Rides</h1>
+<body>
+     {% if not satisfied_rides %}
+        <p>No Available Rides!</p>
+    {% else %}
+        <form action="{% url 'DukeDidi:driverSelectRides' %}" method="post">
+        {% csrf_token %}
+            {% for ride in satisfied_rides %}
+                <input type="radio" name="ride" value="{{ ride.pk }}" required="required">
+                    Ride Owner: {{ ride.owner }}
+                    <br>
+                    Sharers:
+                    {% if ride.sharers %}
+                        <ul>
+                        {% for sharer in ride.sharers %}
+                            <li>{{ sharer }}</li>
+                        {% endfor %}
+                        </ul>
+                    {% else %}
+                         No Sharers!
+                        <br>
+                    {% endif %}
+                    Destination: {{ ride.destination }}
+                    <br>
+                    Arrival Time: {{ ride.arrival_time }}
+                    <br>
+                <br>
+            {% endfor %}
+        <input type="submit" value="Pick Order" name="driver_pick_order">
+        </form>
+    {% endif %}
+<a href="{% url 'DukeDidi:driverDashboard' %}">Back to Driver Dashboard</a>
+</body>
+</html>

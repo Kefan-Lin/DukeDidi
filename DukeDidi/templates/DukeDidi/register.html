@@ -1,0 +1,27 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>Title</title>
+</head>
+<h1>Register Form</h1>
+<body>
+<form action="{% url 'DukeDidi:register' %}" method="post">
+    {% csrf_token %}
+    email:
+    <input type="text" name="email" required="required">
+    <br>
+    password:
+    <input type="password" name="password" required="required">
+    <br>
+    {% if invalid_email %}
+        <p>Illegal Email or Password!</p>
+    {% endif %}
+    <br>
+    <input type="submit" value="Submit" name="register_button">
+    <br>
+    <br>
+</form>
+<a href="{% url 'DukeDidi:login' %}">Back to Login Page</a>
+</body>
+</html>

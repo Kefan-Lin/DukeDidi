@@ -1,0 +1,20 @@
+568 Danger Log HW 1
+
+Datetime: 01/25/2020
+1. If the user doesn’t click “logout” but directly close the browser, its status is still logged in. We still do not solve it.
+
+Datetime: 01/27/2020
+2. The driver can modify his vehicle info when there is ongoing ride. Actually it is unsafe for passengers, so driver should not be supported to change vehicle info when there exists ongoing ride.
+
+Datetime: 01/27/2020
+3. Previously, if an error occurs, data would be already stored in database, which is unreasonable. Later, we add an attribute of "required" to form in html, which force user to complete the entire form. If the content of input information is illegal, error message will be printed out and data will not be stored in database.
+
+Datetime: 01/30/2020
+4. Previously, registered user's password is stored with plain text in database, which is extremely unsafe. Later, we use model of python called "hashlib" to hash the plain text password. We also concatenate the initial password with a "salt". Everytime user log in, we will firstly get "salt" from database, then concatenate it with "input password", then hash the whole string, which will be compared with encrypted password in database.
+
+Datetime: 02/03/2020
+5. When user request a ride, he actually can request a ride with past time, which is unreasonable. We should improve it in future.
+
+Datetime: 02/06/2020
+6. We store the password for smtp server with plain text in source code, which is unsafe if the code is obtained by some malicious adversary.
+ 

@@ -1,0 +1,31 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>Title</title>
+</head>
+<h1>Change Driver Status</h1>
+<body>
+<form action="{% url 'DukeDidi:editDriver' %}" method="post">
+    {% csrf_token %}
+    New Vehicle Capacity:
+    <select name="vehicle_capacity" required="required">
+                <option value="4">Small (4 Total)</option>
+                <option value="6">Medium (6 Total)</option>
+                <option value="8">Luxury (8 Total)</option>
+    </select>
+    <br>
+    New License Plate Number:
+    <input type="text" name="new_license_plate_number">
+    <br>
+    {% if invalid_driver %}
+        <p>Illegal capacity or license!</p>
+    {% endif %}
+    <br>
+    <input type="submit" value="Submit" name="driver_update_button">
+    <br>
+    <br>
+</form>
+<a href="{% url 'DukeDidi:dashboard' %}">Back to Dashboard</a>
+</body>
+</html>

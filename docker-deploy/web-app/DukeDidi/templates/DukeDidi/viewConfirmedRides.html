@@ -1,0 +1,56 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>Title</title>
+</head>
+<body>
+    {% if not user_confirmed_rides %}
+        <p>Confirmed Rides Not Found!</p>
+    {% else %}
+            {% for ride in user_confirmed_rides %}
+                ****************************************
+                <br>
+                Ride: {{ forloop.counter }}
+                <br>
+                Driver: {{ ride.driver }}
+                <br>
+                License Plate Number: {{ ride.license_plate_number }}
+                <br>
+                Owner: {{ ride.owner }}
+                <br>
+                {% if ride.driver %}
+                    Driver: {{ ride.driver }}
+                {% else %}
+                    No Driver!
+                {% endif %}
+                <br>
+                Sharers:
+                {% if ride.sharers %}
+                    <ul>
+                    {% for sharer in ride.sharers %}
+                        <li>{{ sharer }}</li>
+                    {% endfor %}
+                    </ul>
+                {% else %}
+                     No Sharers!
+                {% endif %}
+                <br>
+                Remaining Size: {{ ride.remaining_size }}
+                <br>
+                Is Confirmed: {{ ride.is_confirmed }}
+                <br>
+                Is Completed: {{ ride.is_completed }}
+                <br>
+                Destination: {{ ride.destination }}
+                <br>
+                Arrival Time: {{ ride.arrival_time }}
+                <br>
+                Total Seats: {{ ride.total_size }}
+                <br>
+                <br>
+            {% endfor %}
+    {% endif %}
+<a href="{% url 'DukeDidi:dashboard' %}">Back to Dashboard</a>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>Title</title>
+</head>
+<h1>Search Sharable Rides</h1>
+<body>
+    <form action="{% url 'DukeDidi:searchSharableRides' %}" method="post">
+    {% csrf_token %}
+    Destination:
+    <input type="text" name="destination" required="required">
+    <br><br>
+    Arrival Time Window:
+    <br>
+    Start Time:
+    <input type="datetime-local" name="start_time" required="required">
+    <br><br>
+    End Time:
+    <input type="datetime-local" name="end_time" required="required">
+    <br><br>
+    Passenger Party Size:
+    <input type="number" name="passenger_party_size" min="1" max="7" required="required">
+    <br><br>
+   <br><br>
+       {% if invalid_search %}
+       <br><br>
+        <p>Invalid search,</p><p>please search again!</p>
+       {% endif %}
+        <br><br>
+       <input type="submit" value="Search" name="submit_search">
+    <br>
+    <br>
+    </form>
+<a href="{% url 'DukeDidi:dashboard' %}">Back to Dashboard</a>
+</body>
+</html>
